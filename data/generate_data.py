@@ -1,8 +1,9 @@
 import random
 from datetime import datetime, timedelta
 import json
+from flask import Flask, jsonify
 
-NUM_ROWS = 1000
+NUM_ROWS = 1
 
 def generate_data():
     projects = []
@@ -32,3 +33,11 @@ def generate_data():
         projects.append(project)
 
     return projects
+
+app = Flask(__name__)
+@app.route('http://localhost:3000/api/projects', methods=['POST'])
+def update_projects():
+    return 
+
+if __name__ == '__main__':
+    app.run(debug=True)
