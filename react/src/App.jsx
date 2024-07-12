@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState, useEffect } from "react";
 import './App.css'
 import {
   BrowserRouter as Router,
@@ -7,13 +7,31 @@ import {
   Link
 } from "react-router-dom";
 
-import { AuthProvider } from "./hooks/AuthContext";
+// import { AuthProvider } from "./hooks/AuthContext";
 
 import Home from './components/Home';
-import LoginForm from './components/LoginForm';
-import RequireAuth from './components/RequireAuth';
+// import LoginForm from './components/LoginForm';
+// import RequireAuth from './components/RequireAuth';
 
 function App() {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+          const response = await fetch("http://localhost:3000/api/projects");
+            if (!response.ok) {
+                throw new Error('Data could not be fetched!');
+            }
+            const json_response = await response.json();
+            setData(json_response); // assign JSON response to the data variable.
+        } catch (error) {
+            console.error('Error fetching projects:', error);
+        }
+    };
+
+    fetchData();  
+  }, []);
+
   return (
     <Router>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -43,9 +61,10 @@ function App() {
         <div className="container-fluid">
           <div className="row">
             <hr />
-            <AuthProvider>
+            <Home data={data} />
+            {/* <AuthProvider>
               <Routes>
-                <Route exact path="/" element={<Home data={data} handleDelete={handleDelete} page={page} setPage={setPage} />} />
+                <Route exact path="/" element={<Home data={data} />} />
                 <Route path="/add" element={
                   <RequireAuth>
                     <AddProject />
@@ -53,13 +72,10 @@ function App() {
                 } />
                 <Route path="/Login" element={<LoginForm />} />
               </Routes>
-            </AuthProvider>
+            </AuthProvider> */}
           </div>
         </div>
       </main>
-      <footer className={import.meta.env.VITE_ENVIRONMENT === "development" ? "bg-yellow" : import.meta.env.VITE_ENVIRONMENT === "production" ? "bg-green" : ""}>
-        <div><strong>{import.meta.env.VITE_ENVIRONMENT.toUpperCase()}</strong></div>
-      </footer>
     </Router>
   )
 }

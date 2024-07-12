@@ -13,7 +13,7 @@ def generate_data():
             "teamSize": random.choice([5, 10, 15, 20]),
             "budget": random.choice([100, 1000, 10000]),
             "workload": 0,
-            "completionTime": False,
+            "completionTime": "-",
             "tasks": []
         }
         
@@ -21,6 +21,7 @@ def generate_data():
             task = {
                 "taskId": j,
                 "description": random.choice(["Create", "Read", "Update", "Delete"]),
+                "completeStatus": False,
                 "personAssigned": random.choice(["Abby", "Bill", "Carolyn", "Darrel"]),
                 "dueDate": datetime.now().isoformat(),
                 "estimatedDuration": random.choice([1, 2, 3, 5, 8, 13])
