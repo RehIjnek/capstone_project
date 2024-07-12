@@ -1,0 +1,71 @@
+[
+    {
+        "projId": 1,
+        "teamSize": 5,
+        "budget": 10,
+        "workload": 1,
+        "completionTime": "sample completion time",
+        "tasks": [
+            {
+                "taskId": 1,
+                "description": "sample description",
+                "personAssigned": "sample person assigned",
+                "dueDate": "sample due date",
+                "estimatedDuration": 1
+            }
+        ]
+    },
+    {
+        "projId": 2,
+        "teamSize": 10,
+        "budget": 100,
+        "workload": 3,
+        "completionTime": "sample completion time",
+        "tasks": [
+            {
+                "taskId": 1,
+                "description": "sample description",
+                "personAssigned": "sample person assigned",
+                "dueDate": "sample due date",
+                "estimatedDuration": 1
+            },
+            {
+                "taskId": 2,
+                "description": "sample description",
+                "personAssigned": "sample person assigned",
+                "dueDate": "sample due date",
+                "estimatedDuration": 2
+            }
+        ]
+    },
+    {
+        "projId": 3,
+        "teamSize": 15,
+        "budget": 1000,
+        "workload": 6,
+        "completionTime": "sample completion time",
+        "tasks": [
+            {
+                "taskId": 1,
+                "description": "sample description",
+                "personAssigned": "sample person assigned",
+                "dueDate": "sample due date",
+                "estimatedDuration": 1
+            },
+            {
+                "taskId": 2,
+                "description": "sample description",
+                "personAssigned": "sample person assigned",
+                "dueDate": "sample due date",
+                "estimatedDuration": 2
+            },
+            {
+                "taskId": 3,
+                "description": "sample description",
+                "personAssigned": "sample person assigned",
+                "dueDate": "sample due date",
+                "estimatedDuration": 3
+            }
+        ]
+    }
+]
