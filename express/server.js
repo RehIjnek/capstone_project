@@ -25,3 +25,7 @@ app.get('/api/projects', async (req, res) => {
         res.status(500).send("Hmmm, something smells... No characters for you! ☹");
     }
 });
+
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
