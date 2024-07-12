@@ -78,6 +78,20 @@ app.put('/api/projects/:id', async (req, res) => {
     }
 });
 
+app.get('/api/projects/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const client = await MongoClient.connect(url);
+        const db = client.db(dbName);
+        const collection = db.collection(projectsCollection);
+        const projects = await collection.find({ projId: parseInt(id) }).toArray();
+        res.json(projects[0]);
+    } catch (err) {
+        console.error("Error:", err);
+        res.status(500).send("Hmmm, something smells... No projects for you! ☹");
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

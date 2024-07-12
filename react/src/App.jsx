@@ -12,6 +12,7 @@ import {
 import Home from './components/Home';
 // import LoginForm from './components/LoginForm';
 // import RequireAuth from './components/RequireAuth';
+import TaskList from "./components/TaskList";
 
 function App() {
   const [data, setData] = useState([]);
@@ -61,7 +62,10 @@ function App() {
         <div className="container-fluid">
           <div className="row">
             <hr />
-            <Home data={data} />
+            <Routes>
+              <Route exact path="/" element={<Home data={data} />} />
+              <Route path="/projects/:id" element={<TaskList />} />
+            </Routes>
             {/* <AuthProvider>
               <Routes>
                 <Route exact path="/" element={<Home data={data} />} />
