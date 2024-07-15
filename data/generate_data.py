@@ -2,7 +2,7 @@ import random
 from datetime import datetime, timedelta, date
 import json
 
-NUM_ROWS = 1000
+NUM_ROWS = 10
 TEAM_SIZES = [5, 10, 15, 20]
 BUDGET_SIZES = [10, 100, 1000, 10000]
 WORKLOADS = ["light", "moderate", "heavy"]

@@ -10,6 +10,10 @@ const Project = (props) => {
         <div className="card-text">Workload: {props.data.workload}</div>
         <div className="card-text">Completion Time: {props.data.completionTime}</div>
       </div>
+      <div className="card-footer" style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <button className="btn btn-sm btn-info" onClick={() => props.navigateOpen(props.data.projId)}>Details</button>
+        <button className="btn btn-sm btn-danger" onClick={() => props.handleDelete(props.data.projId)}>Delete</button>
+      </div>
     </div>
   );
 };

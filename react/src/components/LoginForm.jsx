@@ -12,7 +12,9 @@ function LoginForm() {
         event.preventDefault();
         await login(username, password);
         console.log(username, password);
-        navigate('/createProject');
+        let repath = location.state?.from?.pathname;
+        repath ? navigate(repath) : navigate('/');
+
     };
 
     return (
