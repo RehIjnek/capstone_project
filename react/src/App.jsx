@@ -75,17 +75,6 @@ function App() {
                 <Route path="/login" element={<LoginForm />} />
               </Routes>
             </AuthProvider>
-            {/* <AuthProvider>
-              <Routes>
-                <Route exact path="/" element={<Home data={data} />} />
-                <Route path="/add" element={
-                  <RequireAuth>
-                    <AddProject />
-                  </RequireAuth>
-                } />
-                
-              </Routes>
-            </AuthProvider> */}
           </div>
         </div>
       </main>
