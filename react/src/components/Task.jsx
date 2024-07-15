@@ -11,6 +11,10 @@ const Task = (props) => {
         <div className="card-text">Due Date: {props.data.dueDate}</div>
         <div className="card-text">Estimated Duration: {props.data.estimatedDuration}</div>
       </div>
+      <div className="card-footer" style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <button className="btn btn-sm btn-info" onClick={() => props.navEditTask(props.data.taskId)}>Edit</button>
+        <button className="btn btn-sm btn-danger" onClick={() => props.taskDelete(props.data.taskId)}>Delete</button>
+      </div>
     </div>
   );
 }
