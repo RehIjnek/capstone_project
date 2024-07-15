@@ -1,16 +1,10 @@
 import React, { useState } from "react";
-import { useAuth } from '../hooks/AuthContext';
 
-const CreateProject = () => {
-    const { user } = useAuth();
-
+const Predictor = () => {
     const [projectData, setProjectData] = useState({
-        projId: 0,
         teamSize: 0,
         budget: 0,
         workload: "",
-        completionTime: 0,
-        tasks: []
     });
 
     const handleChange = (e) => {
@@ -30,12 +24,13 @@ const CreateProject = () => {
 
         try {
             // TODO: Make a POST request to the API to add the sock
-            const response = await fetch("http://localhost:3000/api/projects", {
+            const response = await fetch("http://127.0.0.1:5000/prediction", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(submission),
+                mode: "no-cors"
             });
 
             if (!response.ok) {
@@ -54,22 +49,11 @@ const CreateProject = () => {
     return (
         <div className="row">
             <div>
-                {user ? <h5>Welcome, {user.username}! Your UID is {user.uid}</h5> : <h1>Please log in.</h1>}
-                {/* Test */}
+                {/* {user ? <h5>Welcome, {user.username}! Your UID is {user.uid}</h5> : <h1>Please log in.</h1>} */}
+                Completion Time Predictor
             </div>
             <div className="col-4">
                 <form onSubmit={handleSubmit} className="p-3">
-                    <div className="form-group">
-                        <label htmlFor="projId">ProjectID</label>
-                        <input
-                            type="text"
-                            id="projId"
-                            name="projId"
-                            value={projectData.projId}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    {/* Additional form groups for sock details */}
                     <div className="form-group">
                         <label htmlFor="teamSize">TeamSize</label>
                         <input
@@ -97,15 +81,6 @@ const CreateProject = () => {
                             onChange={handleChange}
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="completionTime">CompletionTime</label>
-                        <input
-                            id="completionTime"
-                            name="completionTime"
-                            value={projectData.completionTime}
-                            onChange={handleChange}
-                        />
-                    </div>
                     <button type="submit" className="btn btn-primary">
                         Submit
                     </button>
@@ -115,4 +90,4 @@ const CreateProject = () => {
     );
 };
 
-export default CreateProject;
+export default Predictor;
