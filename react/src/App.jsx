@@ -13,6 +13,7 @@ import Home from './components/Home';
 // import LoginForm from './components/LoginForm';
 // import RequireAuth from './components/RequireAuth';
 import TaskList from "./components/TaskList";
+import CreateProject from "./components/CreateProject";
 
 function App() {
   const [data, setData] = useState([]);
@@ -49,7 +50,7 @@ function App() {
                 </Link>
               </li>
               <li className="nav-item dropdown">
-                <Link className="nav-link" to="/add">
+                <Link className="nav-link" to="/createProject">
                   Create Project
                 </Link>
               </li>
@@ -65,6 +66,7 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Home data={data} />} />
               <Route path="/projects/:id" element={<TaskList />} />
+              <Route path="/createProject" element={<CreateProject />} />
             </Routes>
             {/* <AuthProvider>
               <Routes>
