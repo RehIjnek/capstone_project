@@ -3,8 +3,8 @@
         "projId": 1,
         "teamSize": 5,
         "budget": 10,
-        "workload": 1,
-        "completionTime": "sample completion time",
+        "workload": "light",
+        "completionTime": 10,
         "tasks": [
             {
                 "taskId": 1,
@@ -20,8 +20,8 @@
         "projId": 2,
         "teamSize": 10,
         "budget": 100,
-        "workload": 3,
-        "completionTime": "sample completion time",
+        "workload": "moderate",
+        "completionTime": 30,
         "tasks": [
             {
                 "taskId": 1,
@@ -45,8 +45,8 @@
         "projId": 3,
         "teamSize": 15,
         "budget": 1000,
-        "workload": 6,
-        "completionTime": "sample completion time",
+        "workload": "heavy",
+        "completionTime": 100,
         "tasks": [
             {
                 "taskId": 1,

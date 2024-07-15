@@ -1,11 +1,11 @@
 import random
 from datetime import datetime, timedelta, date
 import json
-from flask import Flask, jsonify
 
-NUM_ROWS = 2
+NUM_ROWS = 1000
 TEAM_SIZES = [5, 10, 15, 20]
 BUDGET_SIZES = [100, 1000, 10000]
+WORKLOADS = ["light", "moderate", "heavy"]
 PROJECT_DURATIONS = [1, 2, 3, 5, 8, 13]
 
 def generate_data():
@@ -16,8 +16,8 @@ def generate_data():
             "projId": i,
             "teamSize": random.choice(TEAM_SIZES),
             "budget": random.choice(BUDGET_SIZES),
-            "workload": 0,
-            "completionTime": "-",
+            "workload": random.choice(WORKLOADS),
+            "completionTime": 0,
             "tasks": []
         }
         latest_date = date.today()
@@ -33,9 +33,8 @@ def generate_data():
                 "dueDate": end_date.isoformat(),
                 "estimatedDuration": duration_estimate
             }
-            project["workload"] += task["estimatedDuration"]
+            project["completionTime"] += task["estimatedDuration"]
             project["tasks"].append(task)
-        project["completionTime"] = latest_date.isoformat()
         projects.append(project)
 
     return projects
@@ -45,11 +44,3 @@ json_obj = json.dumps(generate_data(), indent=4)
 fileTitle = "generated" + str(NUM_ROWS) + ".json"
 with open(fileTitle, "w") as outfile:
     outfile.write(json_obj)
-
-# app = Flask(__name__)
-# @app.route('http://localhost:4000/api/projects', methods=['POST'])
-# def update_projects():
-#     return generate_data()
-
-# if __name__ == '__main__':
-#     app.run(debug=True)
