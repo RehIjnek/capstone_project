@@ -7,11 +7,11 @@ import {
   Link
 } from "react-router-dom";
 
-// import { AuthProvider } from "./hooks/AuthContext";
+import { AuthProvider } from "./hooks/AuthContext";
 
 import Home from './components/Home';
-// import LoginForm from './components/LoginForm';
-// import RequireAuth from './components/RequireAuth';
+import LoginForm from './components/LoginForm';
+import RequireAuth from './components/RequireAuth';
 import TaskList from "./components/TaskList";
 import CreateProject from "./components/CreateProject";
 
@@ -19,19 +19,19 @@ function App() {
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-        try {
-          const response = await fetch("http://localhost:3000/api/projects");
-            if (!response.ok) {
-                throw new Error('Data could not be fetched!');
-            }
-            const json_response = await response.json();
-            setData(json_response); // assign JSON response to the data variable.
-        } catch (error) {
-            console.error('Error fetching projects:', error);
+      try {
+        const response = await fetch("http://localhost:3000/api/projects");
+        if (!response.ok) {
+          throw new Error('Data could not be fetched!');
         }
+        const json_response = await response.json();
+        setData(json_response); // assign JSON response to the data variable.
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+      }
     };
 
-    fetchData();  
+    fetchData();
   }, []);
 
   return (
@@ -63,11 +63,18 @@ function App() {
         <div className="container-fluid">
           <div className="row">
             <hr />
-            <Routes>
-              <Route exact path="/" element={<Home data={data} />} />
-              <Route path="/projects/:id" element={<TaskList />} />
-              <Route path="/createProject" element={<CreateProject />} />
-            </Routes>
+            <AuthProvider>
+              <Routes>
+                <Route exact path="/" element={<Home data={data} />} />
+                <Route path="/projects/:id" element={<TaskList />} />
+                <Route path="/createProject" element={
+                  <RequireAuth>
+                    <CreateProject />
+                  </RequireAuth>
+                } />
+                <Route path="/login" element={<LoginForm />} />
+              </Routes>
+            </AuthProvider>
             {/* <AuthProvider>
               <Routes>
                 <Route exact path="/" element={<Home data={data} />} />
@@ -76,7 +83,7 @@ function App() {
                     <AddProject />
                   </RequireAuth>
                 } />
-                <Route path="/Login" element={<LoginForm />} />
+                
               </Routes>
             </AuthProvider> */}
           </div>

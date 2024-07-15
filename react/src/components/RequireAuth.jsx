@@ -5,6 +5,7 @@ const RequireAuth = ({ children }) => {
     const auth = useAuth();
     const location = useLocation();
 
+    if(!auth) console.log("no auth object found");
     if (!auth?.user) {
         // Redirect them to the login page, but save the current location they were trying to go to after login
         return <Navigate to="/login" state={{ from: location }} replace />;

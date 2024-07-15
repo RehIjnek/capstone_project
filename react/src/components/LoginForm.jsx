@@ -12,7 +12,7 @@ function LoginForm() {
         event.preventDefault();
         await login(username, password);
         console.log(username, password);
-        navigate('/add');
+        navigate('/createProject');
     };
 
     return (

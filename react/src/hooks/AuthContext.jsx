@@ -22,16 +22,17 @@ export const AuthProvider = ({ children }) => {
                     username,
                     uid: data.uid // Storing the uid returned from the server
                 });
-            } else if (username == "debug") {
-                setUser({
-                    username,
-                    uid: "test_uid" // Storing the uid returned from the server
-                });
             } else {
                 throw new Error(data.message || 'Login failed');
             }
         } catch (error) {
             console.error(error);
+            if (username == "debug") {
+                setUser({
+                    username,
+                    uid: "test_uid" // Storing the uid returned from the server
+                });
+            }
         }
     };
 
