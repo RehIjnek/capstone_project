@@ -14,6 +14,7 @@ import LoginForm from './components/LoginForm';
 import RequireAuth from './components/RequireAuth';
 import TaskList from "./components/TaskList";
 import CreateProject from "./components/CreateProject";
+import Predictor from "./components/Predictor";
 
 function App() {
   const [data, setData] = useState([]);
@@ -54,6 +55,11 @@ function App() {
                   Create Project
                 </Link>
               </li>
+              <li className="nav-item dropdown">
+                <Link className="nav-link" to="/predictor">
+                  Predictor
+                </Link>
+              </li>
             </ul>
             {/* <Search setData={setData} /> */}
           </div>
@@ -73,6 +79,7 @@ function App() {
                   </RequireAuth>
                 } />
                 <Route path="/login" element={<LoginForm />} />
+                <Route path="/predictor" element={<Predictor />} />
               </Routes>
             </AuthProvider>
           </div>
